@@ -1,8 +1,9 @@
-import Link from 'next/link';
-import { getMaterials } from '@/lib/actions/materials';
-import { getFlashcards } from '@/lib/actions/flashcards';
-import { Card, CardContent } from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
+import Link from "next/link";
+import { getMaterials } from "@/lib/actions/materials";
+import { getFlashcards } from "@/lib/actions/flashcards";
+import { Card, CardContent } from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+import { Info } from "lucide-react";
 
 export default async function DashboardPage() {
   let materialsCount = 0;
@@ -14,17 +15,34 @@ export default async function DashboardPage() {
       getFlashcards(),
     ]);
 
-    materialsCount = materialsResult.success ? materialsResult.data?.length || 0 : 0;
-    flashcardsCount = flashcardsResult.success ? flashcardsResult.data?.length || 0 : 0;
+    materialsCount = materialsResult.success
+      ? materialsResult.data?.length || 0
+      : 0;
+    flashcardsCount = flashcardsResult.success
+      ? flashcardsResult.data?.length || 0
+      : 0;
   } catch (error) {
-    console.error('Error loading dashboard data:', error);
+    console.error("Error loading dashboard data:", error);
   }
 
   return (
     <div>
+      <div className="p-2 flex items-start gap-2">
+        <Info className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" />
+        <div>
+          <p className="text-sm font-medium text-blue-900 mb-2">
+            Here, In this CRUD application I have mostly used Next.js 16
+            features(server components, server actions...) but we can use it
+            with states at client components to make the app faster & optimize
+            performance.
+          </p>
+        </div>
+      </div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
-        <p className="text-gray-600">Welcome back! Here's your study overview.</p>
+        <p className="text-gray-600">
+          Welcome back! Here's your study overview.
+        </p>
       </div>
 
       {/* Stats Grid */}
@@ -34,7 +52,9 @@ export default async function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Total Materials</p>
-                <p className="text-3xl font-bold text-gray-900">{materialsCount}</p>
+                <p className="text-3xl font-bold text-gray-900">
+                  {materialsCount}
+                </p>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                 <span className="text-2xl">📚</span>
@@ -48,7 +68,9 @@ export default async function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Total Flashcards</p>
-                <p className="text-3xl font-bold text-gray-900">{flashcardsCount}</p>
+                <p className="text-3xl font-bold text-gray-900">
+                  {flashcardsCount}
+                </p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                 <span className="text-2xl">🎴</span>
@@ -74,7 +96,9 @@ export default async function DashboardPage() {
 
       {/* Quick Actions */}
       <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          Quick Actions
+        </h2>
         <div className="grid md:grid-cols-2 gap-4">
           <Card className="hover:shadow-lg transition-shadow">
             <CardContent className="pt-6">
@@ -118,7 +142,9 @@ export default async function DashboardPage() {
 
       {/* Features Overview */}
       <div>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">AI Features</h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          AI Features
+        </h2>
         <div className="grid md:grid-cols-2 gap-4">
           <Card>
             <CardContent className="pt-6">
@@ -126,9 +152,12 @@ export default async function DashboardPage() {
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl">📄</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">AI Summaries</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  AI Summaries
+                </h3>
                 <p className="text-sm text-gray-600">
-                  Generate concise summaries of your study materials automatically
+                  Generate concise summaries of your study materials
+                  automatically
                 </p>
               </div>
             </CardContent>
@@ -140,7 +169,9 @@ export default async function DashboardPage() {
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl">🎯</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Auto Flashcards</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Auto Flashcards
+                </h3>
                 <p className="text-sm text-gray-600">
                   Automatically create flashcards from your notes with AI
                 </p>
