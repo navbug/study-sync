@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
-import { useActionState } from 'react';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { loginUser } from '@/lib/actions/auth';
-import Button from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
+import { useActionState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { loginUser } from "@/lib/actions/auth";
+import Button from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Info } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -16,10 +17,10 @@ export default function LoginPage() {
   useEffect(() => {
     if (state?.success) {
       setIsRedirecting(true);
-      
+
       // Small delay to ensure cookie is set
       setTimeout(() => {
-        router.push('/dashboard');
+        router.push("/dashboard");
         router.refresh();
       }, 100);
     }
@@ -39,6 +40,26 @@ export default function LoginPage() {
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">
           Welcome Back
         </h2>
+
+        {/* Demo Credentials */}
+        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="flex items-start gap-2">
+            <Info className="w-5 h-5 text-blue-600 mt-0.5 shrink-0" />
+            <div>
+              <p className="text-sm font-medium text-blue-900 mb-2">
+                Demo Credentials - Has data to try CRUD operations.
+              </p>
+              <div className="space-y-1 text-sm text-blue-800">
+                <p>
+                  <span className="font-medium">Email:</span> navbug@gmail.com
+                </p>
+                <p>
+                  <span className="font-medium">Password:</span> password123
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {state?.error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -71,20 +92,26 @@ export default function LoginPage() {
             className="w-full"
             disabled={isPending}
             isLoading={isPending || isRedirecting}
-            content='Logging in...'
+            content="Logging in..."
           >
-            {isPending ? 'Logging in...' : 'Login'}
+            {isPending ? "Logging in..." : "Login"}
           </Button>
         </form>
 
         <p className="mt-6 text-center text-gray-600">
-          Don't have an account?{' '}
-          <Link href="/register" className="text-blue-600 hover:underline font-medium">
+          Don't have an account?{" "}
+          <Link
+            href="/register"
+            className="text-blue-600 hover:underline font-medium"
+          >
             Register here
           </Link>
         </p>
 
-        <Link href="/" className="block mt-4 text-center text-gray-500 hover:text-gray-700">
+        <Link
+          href="/"
+          className="block mt-4 text-center text-gray-500 hover:text-gray-700"
+        >
           ← Back to Home
         </Link>
       </div>

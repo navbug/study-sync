@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { registerUser } from '@/lib/actions/auth';
 import Button from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { Info } from 'lucide-react';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -39,6 +40,26 @@ export default function RegisterPage() {
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">
           Create Account
         </h2>
+
+        {/* Demo Credentials */}
+        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="flex items-start gap-2">
+            <Info className="w-5 h-5 text-blue-600 mt-0.5 shrink-0" />
+            <div>
+              <p className="text-sm font-medium text-blue-900 mb-2">
+                Demo Credentials - Has data to try CRUD operations.
+              </p>
+              <div className="space-y-1 text-sm text-blue-800">
+                <p>
+                  <span className="font-medium">Email:</span> navbug@gmail.com
+                </p>
+                <p>
+                  <span className="font-medium">Password:</span> password123
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {state?.error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
